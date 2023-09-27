@@ -11,88 +11,118 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+      title: 'Carraperinho',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        //tela
+        appBar: AppBar(
+          title: Text("Tarefas"),
+          backgroundColor: Colors.blue,
+          //topo
         ),
-        home: Container(
-          color: Colors.white,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Stack(
-                  alignment: AlignmentDirectional.center,
+        body: ListView(children: [
+          Task("Aprender flutter"),
+          Task("python"),
+          Task("kotlin"),
+          Task("java"),
+          Task("JS"),
+          Task("c#"),
+          Task("C++"),
+          Task("HTML"),
+          Task("Android"),
+          Task("IOS"),
+        ]), //corpo
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+}
+//  StatelessWidget deixa a tela estatica variaveis que mudao nao sera mostrada
+
+class Task extends StatefulWidget {
+  final String nome;
+
+  const Task(this.nome, {super.key});
+
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Stack(children: [
+          Container(
+            color: Colors.blueAccent,
+            height: 140,
+          ),
+          Column(
+            children: [
+              Container(
+                color: Color.fromARGB(246, 250, 246, 246),
+                height: 100,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        color: Colors.black26,
+                        width: 72,
+                        height: 100,
+                      ),
+                      Container(
+                        width: 200,
+                        child: Text(
+                          widget.nome,
+                          style: TextStyle(
+                            fontSize: 24,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              nivel++;
+                            });
+                            print(nivel);
+                          },
+                          child: Icon(Icons.arrow_drop_up))
+                    ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      color: Colors.amber,
-                      width: 200,
-                      height: 200,
+                      child: LinearProgressIndicator(
+                        color: Colors.white,
+                        value: nivel / 10,
+                      ),
+                      width: 230,
                     ),
-                    Container(
-                      color: Colors.blueGrey,
-                      width: 100,
-                      height: 100,
-                    )
+                    Text(
+                      "Nivel $nivel",
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    ),
                   ],
                 ),
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      color: Colors.redAccent,
-                      width: 200,
-                      height: 200,
-                    ),
-                    Container(
-                      color: Colors.blue,
-                      width: 100,
-                      height: 100,
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      color: Colors.purple,
-                      width: 100,
-                      height: 100,
-                    ),
-                    Container(
-                      color: Colors.pink,
-                      width: 100,
-                      height: 100,
-                    ),
-                    Container(
-                      color: Colors.tealAccent,
-                      width: 100,
-                      height: 100,
-                    )
-                  ],
-                ),
-                Container(
-                  color: Colors.orange,
-                  height: 50,
-                  width: 300,
-                  child: Text(
-                    "natan carrapeiro",
-                    style: TextStyle(color: Colors.black, fontSize: 30),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                ElevatedButton(
-                    //botao
-                    onPressed: () {
-                      print("botao apertado");
-                      //função ao aperta o botao
-                    },
-                    child: Text("botao"))
-                //texto do botao
-              ]),
-        ));
+              ),
+            ],
+          )
+        ]),
+      ),
+    );
   }
 }
 
@@ -117,6 +147,7 @@ void coluna() {
   //           )
   //         ]),
 }
+
 void linha() {
   //  home: Row(
   //       mainAxisAlignment: MainAxisAlignment.spaceAround,
