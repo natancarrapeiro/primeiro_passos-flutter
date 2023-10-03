@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:inicio/difficulty.dart';
 
 void main() {
   runApp(MyApp()); //runApp é a aplicacão que aparece na tela
@@ -140,46 +139,8 @@ class _TaskState extends State<Task> {
                               ),
                             ),
                           ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                //condição para cor da estrelha, (operação)[?]pergunta( resposta)[:]se nao (resposta)
-                                color: (widget.dificuldade >= 1)
-                                    ? Colors.blue
-                                    : Colors.blue[100],
-                              ),
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                color: (widget.dificuldade >= 2)
-                                    ? Colors.blue
-                                    : Colors.blue[100],
-                              ),
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                color: (widget.dificuldade >= 3)
-                                    ? Colors.blue
-                                    : Colors.blue[100],
-                              ),
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                color: (widget.dificuldade >= 4)
-                                    ? Colors.blue
-                                    : Colors.blue[100],
-                              ),
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                color: (widget.dificuldade >= 5)
-                                    ? Colors.blue
-                                    : Colors.blue[100],
-                              ),
-                            ],
-                          )
+                          difficulty(
+                              deficultyLevel:widget.dificuldade)
                         ],
                       ),
                       Container(
@@ -198,11 +159,9 @@ class _TaskState extends State<Task> {
                                   print(nivel);
                                 },
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-
                                     Icon(Icons.arrow_drop_up),
                                     Text(
                                       "UP",
@@ -244,43 +203,3 @@ class _TaskState extends State<Task> {
   }
 }
 
-//organisação dos widgets Colum /Row
-void coluna() {
-  //como se usa o Colum e suas funções
-
-  // home: Column(
-  //     mainAxisAlignment: MainAxisAlignment.center, //eixo principal
-  //     crossAxisAlignment: CrossAxisAlignment.center, //eixo secundario
-  //     children: [
-  //        //filhos
-  //     Container(
-  //           color: Colors.amber,
-  //            width: 200,
-  //           height: 200,
-  //           ),
-  //           Container(
-  //             color: Colors.blueGrey,
-  //             width: 100,
-  //             height: 100,
-  //           )
-  //         ]),
-}
-
-void linha() {
-  //  home: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       children: [
-  //         Container(
-  //           color: Colors.amber,
-  //           width: 200,
-  //           height: 200,
-  //         ),
-  //         Container(
-  //           color: Colors.blueGrey,
-  //           width: 200,
-  //           height: 200,
-  //         )
-  //       ],
-  //     ),
-}
