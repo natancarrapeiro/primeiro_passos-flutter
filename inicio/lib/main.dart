@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:inicio/initial_screen.dart';
-import 'package:inicio/task.dart';
+import 'package:inicio/screens/initial_screen.dart';
+
 
 void main() {
-  runApp(MyApp()); //runApp é a aplicacão que aparece na tela
+  runApp(const MyApp()); //runApp é a aplicacão que aparece na tela
 }
 
-class MyApp extends StatefulWidget {
-  MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-
-  // This widget is the root of your application.
-  @override
+class MyApp extends StatelessWidget {
+    const MyApp({super.key});
+ @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Carraperinho',
@@ -29,6 +20,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
 //  StatelessWidget deixa a tela estatica variaveis que mudao nao sera mostrada
 
 
