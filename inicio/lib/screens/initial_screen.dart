@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inicio/components/task.dart';
 
 class InitialScreen extends StatefulWidget {
+  const InitialScreen({super.key});
 
   @override
   State<InitialScreen> createState() => _InitialScreenState();
@@ -27,20 +28,14 @@ class _InitialScreenState extends State<InitialScreen> {
         opacity: opacidade ? 1 : 0,
         duration: const Duration(milliseconds: 700),
         child: ListView(children: const [
-          Task(
-              "flutter",
-              "https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large",
-              3),
-          Task(
-              "python",
-              "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png",
-              2),
-          Task(
-              "kotlin",
-              "https://www.staffworx.co.uk/wp-content/uploads/2020/12/kotlin-logo-3-300x200.jpg",
-              3),
-          Task("java",
-              "https://www.oracle.com/a/tech/img/rc10-java-badge-3.png", 4),
+          Task("flutter", "assets/images/flutter.png", 3),
+          Task("python", "assets/images/python.jpg", 1),
+          Task("kotlin", "assets/images/kotlin.png", 3),
+          Task("java", "assets/images/java.png", 4),
+          Task("Android", "assets/images/android.png", 5),
+          SizedBox(
+            height: 80,
+          )
         ]),
       ), //corpo
       floatingActionButton: FloatingActionButton(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:inicio/components/difficulty.dart';
 
@@ -14,6 +16,28 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+  Color newColor = Colors.blueAccent;
+
+  randomColor() {
+    var R =Random().nextInt(255);
+    var G = Random().nextInt(255);
+    var B = Random().nextInt(255);
+    List<int> valores = [R, G, B];
+    return valores;
+  }
+
+  void mudarCorDoWidget() {
+    randomColor();
+    setState(() {
+      var valor = randomColor();
+
+      int r = valor[0];
+      int g = valor[1];
+      int b = valor[2];
+      newColor = Color.fromRGBO(r, g, b, 1);
+     
+    });
+  }
 
   @override
 //Build é o termo usado para identificar uma versão compilada de um programa
@@ -24,8 +48,7 @@ class _TaskState extends State<Task> {
       child: Stack(children: [
         Container(
           decoration: BoxDecoration(
-              color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(6)),
+              color: newColor, borderRadius: BorderRadius.circular(6)),
           height: 140,
         ),
         Column(
@@ -50,7 +73,7 @@ class _TaskState extends State<Task> {
                       // para assim usar o border
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.network(
+                        child: Image.asset(
                           widget.foto,
                           fit: BoxFit.cover,
                         ),
@@ -84,7 +107,12 @@ class _TaskState extends State<Task> {
                           child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  nivel++;
+                                  if (nivel < (widget.dificuldade * 10)) {
+                                    nivel++;
+                                  } else {
+                                    nivel = 1;
+                                    mudarCorDoWidget();
+                                  }
                                 });
                                 // print(nivel);
                               },
