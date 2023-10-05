@@ -128,7 +128,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   Container(
                     width: 80,
-                    height: 100,
+                    height: 80,
                     decoration: BoxDecoration(
                       color: Colors.blueAccent,
                       borderRadius: BorderRadius.circular(15),
@@ -161,7 +161,7 @@ class _FormScreenState extends State<FormScreen> {
                             ),
                           );
                           // Navigator.of(context).pop();
-                          Navigator.of(context).pushReplacementNamed("/home");
+                          Navigator.of(context).pushReplacementNamed("/");
                           // sem usar o routes
                           // Navigator.pop(context);
                         }
