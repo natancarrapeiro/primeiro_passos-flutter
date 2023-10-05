@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:const formScreen(),
+      // apos usar o routes nao preciso mais usar o home: tela()
+      // home:const InitialScreen(),
+      initialRoute: "/home",
+      routes: {
+        "/home":(context)=>InitialScreen(),
+        "/home/formulario":(context)=>FormScreen(),
+      },
     );
   }
 }

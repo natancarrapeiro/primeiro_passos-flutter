@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class formScreen extends StatefulWidget {
-  const formScreen({super.key});
+class FormScreen extends StatefulWidget {
+  const FormScreen({super.key});
 
   @override
-  State<formScreen> createState() => _formScreenState();
+  State<FormScreen> createState() => _FormScreenState();
 }
 
-class _formScreenState extends State<formScreen> {
+class _FormScreenState extends State<FormScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imgUrlController = TextEditingController();
@@ -22,7 +22,6 @@ class _formScreenState extends State<formScreen> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          leading: const Icon(Icons.task),
           title: const Text(
             "Cadrastro de tarefas",
             style: TextStyle(color: Colors.white, fontSize: 24),
@@ -157,7 +156,14 @@ class _formScreenState extends State<formScreen> {
                           print(imgUrlController.text);
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Tarefa  criada')));
+                            const SnackBar(
+                              content: Text('Tarefa  criada'),
+                            ),
+                          );
+                          // Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacementNamed("/home");
+                          // sem usar o routes
+                          // Navigator.pop(context);
                         }
                       },
                       child: const Column(
