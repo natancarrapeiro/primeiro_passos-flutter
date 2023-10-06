@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inicio/data/task_inherited.dart';
-
+import 'package:inicio/data/taskInherited.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -23,7 +22,10 @@ class _InitialScreenState extends State<InitialScreen> {
         backgroundColor: Colors.blue,
         //topo
       ),
-      body: ListView(children: TaskInherited.of(context).taskList), //corpo
+      body: Container(
+        child: ListView(children: TaskInherited.of(context).taskList),
+        padding: EdgeInsets.only(top: 5, bottom: 57),
+      ), //corpo
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed("/form");

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:inicio/data/taskInherited.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
+
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -151,9 +153,18 @@ class _FormScreenState extends State<FormScreen> {
                       onPressed: () {
                         // pego a chave e verifico se ela esta tudo bem
                         if (_formKey.currentState!.validate()) {
-                          print(nameController.text);
-                          print(int.parse(difficultyController.text));
-                          print(imgUrlController.text);
+                          // entro no context da onde armazena a os dados e
+                          // pega a função de criar uma nova task e insiro os
+                          // dados de captura do form
+                          TaskInherited.of(context).newTask(
+                            nameController.text,
+                            imgUrlController.text,
+                            int.parse(difficultyController.text),
+                          );
+
+                          // print(nameController.text);
+                          // print(int.parse(difficultyController.text));
+                          // print(imgUrlController.text);
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

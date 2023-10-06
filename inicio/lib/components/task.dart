@@ -16,10 +16,18 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+
+  bool asserOrNetwork() {
+    if (widget.foto.contains("http")) {
+      return false;
+    }
+    return true;
+  }
+
   Color newColor = Colors.blueAccent;
 
   randomColor() {
-    var R =Random().nextInt(255);
+    var R = Random().nextInt(255);
     var G = Random().nextInt(255);
     var B = Random().nextInt(255);
     List<int> valores = [R, G, B];
@@ -35,7 +43,6 @@ class _TaskState extends State<Task> {
       int g = valor[1];
       int b = valor[2];
       newColor = Color.fromRGBO(r, g, b, 1);
-     
     });
   }
 
@@ -73,10 +80,15 @@ class _TaskState extends State<Task> {
                       // para assim usar o border
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          widget.foto,
-                          fit: BoxFit.cover,
-                        ),
+                        child: asserOrNetwork()
+                            ? Image.asset(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     Column(
