@@ -20,11 +20,12 @@ class _InitialScreenState extends State<InitialScreen> {
           style: TextStyle(fontSize: 24, color: Colors.white),
         ),
         backgroundColor: Colors.blue,
+
         //topo
       ),
       body: Container(
+        padding: const EdgeInsets.only(top: 5, bottom: 57),
         child: ListView(children: TaskInherited.of(context).taskList),
-        padding: EdgeInsets.only(top: 5, bottom: 57),
       ), //corpo
       floatingActionButton: FloatingActionButton(
         onPressed: () {

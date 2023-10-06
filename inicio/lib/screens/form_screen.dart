@@ -17,6 +17,23 @@ class _FormScreenState extends State<FormScreen> {
   // variavel que recebe uma chave global
   final _formKey = GlobalKey<FormState>();
 
+  bool valueValidator(String? value){
+    if(value != null && value.isEmpty){
+      return true;
+    }return false;
+  }
+
+  bool difficultyValidator(String? value){
+    if(value != null && value.isEmpty){
+      if(int.parse(value) > 5 ||
+          int.parse(value) < 1){
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // form ele visualisa o formulario se ele esta correto
@@ -50,7 +67,7 @@ class _FormScreenState extends State<FormScreen> {
                       children: [
                         TextFormField(
                           validator: (String? value) {
-                            if (value != null && value.isEmpty) {
+                            if (valueValidator(value)) {
                               return 'Insira nome a Tarefa';
                             }
                             return null;
@@ -76,9 +93,7 @@ class _FormScreenState extends State<FormScreen> {
                       children: [
                         TextFormField(
                           validator: (value) {
-                            if (value!.isEmpty ||
-                                int.parse(value) > 5 ||
-                                int.parse(value) < 1) {
+                            if (difficultyValidator(value)) {
                               return 'Insira dificuldade entre 1 a 5';
                             }
                             return null;
@@ -108,7 +123,7 @@ class _FormScreenState extends State<FormScreen> {
                             setState(() {});
                           },
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (valueValidator(value)) {
                               return "Insira uma URL de Imagem ";
                             }
                             return null;

@@ -16,6 +16,8 @@ class TaskInherited extends InheritedWidget {
     Task("java", "assets/images/java.png", 4),
     Task("Android", "assets/images/android.png", 5),
   ];
+
+
   // função para add novo item a list
   void newTask(String name, String photo, int difficulty) {
     taskList.add(Task(name, photo, difficulty));
