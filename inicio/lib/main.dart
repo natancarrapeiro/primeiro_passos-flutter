@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         // home:const InitialScreen(),
         initialRoute: "/" ,
         routes: {
-          "/":(context)=>InitialScreen(),
-          "/form":(context)=>FormScreen(),
+          "/":(context)=>const InitialScreen(),
+          "/form":(context)=>const FormScreen(),
         },
       ),
     );
