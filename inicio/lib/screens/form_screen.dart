@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inicio/data/taskInherited.dart';
+import 'package:inicio/components/task.dart';
+import 'package:inicio/data/task_dao.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
-
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -17,22 +17,21 @@ class _FormScreenState extends State<FormScreen> {
   // variavel que recebe uma chave global
   final _formKey = GlobalKey<FormState>();
 
-  bool valueValidator(String? value){
-    if(value != null && value.isEmpty){
+  bool valueValidator(String? value) {
+    if (value != null && value.isEmpty) {
       return true;
-    }return false;
+    }
+    return false;
   }
 
-  bool difficultyValidator(String? value){
-    if(value != null && value.isEmpty){
-      if(int.parse(value) > 5 ||
-          int.parse(value) < 1){
+  bool difficultyValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      if (int.parse(value) > 5 || int.parse(value) < 1) {
         return true;
       }
     }
     return false;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -165,22 +164,23 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         // pego a chave e verifico se ela esta tudo bem
                         if (_formKey.currentState!.validate()) {
                           // entro no context da onde armazena a os dados e
                           // pega a função de criar uma nova task e insiro os
                           // dados de captura do form
-                          TaskInherited.of(context).newTask(
-                            nameController.text,
-                            imgUrlController.text,
-                            int.parse(difficultyController.text),
-                          );
+                          await TaskDao().save(Task(
+                              nameController.text,
+                              imgUrlController.text,
+                              int.parse(difficultyController.text)));
 
-                          // print(nameController.text);
-                          // print(int.parse(difficultyController.text));
-                          // print(imgUrlController.text);
-
+                          // sem o banco de dados
+                          // TaskInherited.of(context).newTask(
+                          //   nameController.text,
+                          //   imgUrlController.text,
+                          //   int.parse(difficultyController.text),
+                          // );
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Tarefa  criada'),

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:inicio/components/difficulty.dart';
+import 'package:inicio/data/task_dao.dart';
 
 class Task extends StatefulWidget {
   final String nome;
@@ -9,6 +10,7 @@ class Task extends StatefulWidget {
   final int dificuldade;
 
   Task(this.nome, this.foto, this.dificuldade, {super.key});
+
   int nivel = 0;
 
   @override
@@ -16,8 +18,6 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
-
-
   bool asserOrNetwork() {
     if (widget.foto.contains("http")) {
       return false;
@@ -118,9 +118,13 @@ class _TaskState extends State<Task> {
                           height: 52,
                           width: 52,
                           child: ElevatedButton(
+                              onLongPress: () {
+                                TaskDao().delete(widget.nome);
+                              },
                               onPressed: () {
                                 setState(() {
-                                  if (widget.nivel < (widget.dificuldade * 10)) {
+                                  if (widget.nivel <
+                                      (widget.dificuldade * 10)) {
                                     widget.nivel++;
                                   } else {
                                     widget.nivel = 1;
